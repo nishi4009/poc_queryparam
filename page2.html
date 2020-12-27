@@ -1,0 +1,53 @@
+<html>
+<head >
+	<title>Result Page</title>
+	<style>
+		body{
+			font-size: 17px;
+			font-family: arial;
+			background: #f4f4f4;
+			line-height: 1.5em
+		}
+		header{
+			background: #333;
+			color: #fff;
+			padding:20px;
+			text-align: center;
+			border-bottom: 4px #000 solid;
+			margin-bottom: 10px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<header>
+		<h1> Result</h1>
+	</header>
+	<!-- Example of how to get values of parameters from local storage-->
+	LocalStorage Year: <b><span id="result"></span></b>
+	<script >
+		document.getElementById("result").innerHTML=localStorage.getItem("yearval") + " : Type: " + localStorage.getItem("typeval") + " : Sort: "+localStorage.getItem("sortval");
+	</script>
+	<hr/>
+	<!--This is how a url string can be traversed for available query parameters -->
+	Query Param Year: <b><span id="yearresult"></span></b>
+	<script>
+		window.onload = function(){
+			try{
+				var url_string = (window.location.href).toLowerCase();
+				var url= new URL(url_string);
+				var year= url.searchParams.get("year");
+				var type = url.searchParams.get("type");
+				var sort = url.searchParams.get("sort");
+				console.log(year);
+				document.getElementById("yearresult").innerHTML=year + " type: " + type + " sort: " + sort;
+
+			}
+			catch(err){
+				console.log("Issues with parsing url" + err);
+			}
+		};
+	</script>
+</body>
+</html>

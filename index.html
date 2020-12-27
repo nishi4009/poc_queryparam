@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample POC</title>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#submit").click(function(){
+				var years = $("#year");
+				if(years.val() === ""){
+					document.getElementById("result").innerHTML="Please select year";
+					document.getElementById("result").style.color="red";
+				}
+				else{
+					document.getElementById("result").innerHTML="Year:<b>" +years.val()+"</b>";
+					document.getElementById("result").style.color="green";
+				}
+				var type = $("#type");
+				var sort = $("#sort");
+
+				document.getElementById("result").innerHTML= "Year:<b>" + years.val() + "</b> Type: <b>" + type.val() + "</b> Sorting: <b>" + sort.val() + "</b>";
+				document.getElementById("result").style.color="green";
+			});
+		});
+	</script>
+	<style>
+		body{
+			font-size: 17px;
+			font-family: arial;
+			background: #f4f4f4;
+			line-height: 1.5em
+		}
+		header{
+			background: #333;
+			color: #fff;
+			padding:20px;
+			text-align: center;
+			border-bottom: 4px #000 solid;
+			margin-bottom: 10px;
+		}
+		#container{
+			width: 90%
+			margin: auto;
+			padding:10px;
+		}
+	</style>
+
+</head>
+<body>
+	<header>
+		<h1>Sample POC</h1>
+
+	</header>
+	<div id="container">
+		<h1 id= "heading1">Select Filters</h1>
+	<form action="page2.html">
+		<select name= "year" id="year">
+			<option value="" selected hidden>---Select Year--</option>
+			<option value = "2002"> 2002</option>
+			<option value = "2018"> 2018</option>
+			<option value = "2019"> 2019</option>
+			<option value = "2020"> 2020</option>
+			<option value = "2021"> 2021</option>
+		</select>
+		<select name= "type" id="type">
+			<option value="" selected hidden>---Select Type--</option>
+			<option value = "type1"> type1</option>
+			<option value = "type2"> type2</option>
+			<option value = "type3"> type3</option>
+			<option value = "type4"> type4</option>
+			<option value = "type5"> type5</option>
+		</select>
+		<select name= "sort" id="sort">
+			<option value="" selected hidden>---Select Sort--</option>
+			<option value = "asc"> asc</option>
+			<option value = "desc"> desc</option>
+		</select>
+		<input type="submit" id="submit" value = "Submit" onclick="passval()"/>
+		<label id="result"/>
+	</form>
+	</div>
+	
+	<script>
+		function passval(){
+			var selectyear = document.getElementById("year").value;
+			localStorage.setItem("yearval", selectyear);
+			var selecttype = document.getElementById("type").value;
+			localStorage.setItem("typeval", selecttype);
+			var selectsort = document.getElementById("sort").value;
+			localStorage.setItem("sortval", selectsort);
+
+			return true;
+		}
+	</script>
+	<script src = "/javascript/main.js"></script>
+</body>
+</html>
+
